@@ -4,6 +4,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <netdb.h>
+#include <unistd.h>
 
 
 #define PORT        8080
@@ -40,12 +41,14 @@ int main()
         std::cerr << "Error: Listening failed\n";
 
 
-    const char *ptr_msg = "HTTP/1.1 200 OK\r\n"
-                            "Server: Allah Y7ssen L3wan\r\n";
     size_t msg_sent, msg_received;
-    
-    if ((msg_sent = send(clt_socket, ptr_msg, strlen(ptr_msg), 0)) == -1)
+    const char* response = "HTTP/1.1 200 OK\r\n"
+                            "Server: Allah Y7ssen L3wan\r\n"
+                            "Content-Type: text/html\r\n\r\n"
+                            "<h1>Hello, World!</h1>";
+    if ((msg_sent = send(clt_socket, response, strlen(response), 0)) == -1)
         std::cerr << "Error : Sending failed\n";
+    close(clt_socket);
     // if ((msg_received = recv(clt_socket, &ptr_msg, strlen(ptr_msg), 0)) == -1)
     //     std::cerr << "Error : Receving failed\n";
 
