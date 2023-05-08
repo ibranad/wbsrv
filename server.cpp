@@ -45,10 +45,10 @@ int main()
     const char* response = "HTTP/1.1 200 OK\r\n"
                             "Server: Allah Y7ssen L3wan\r\n"
                             "Content-Type: text/html\r\n\r\n"
-                            "<h1>Hello, World!</h1>";
+                            "<h1>Salaam!</h1>";
     if ((msg_sent = send(clt_socket, response, strlen(response), 0)) == -1)
         std::cerr << "Error : Sending failed\n";
-    close(clt_socket);
+    // close(clt_socket);
     // if ((msg_received = recv(clt_socket, &ptr_msg, strlen(ptr_msg), 0)) == -1)
     //     std::cerr << "Error : Receving failed\n";
 
